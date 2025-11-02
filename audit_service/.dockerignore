@@ -29,3 +29,10 @@
 !/storage/.keep
 /tmp/storage/*
 !/tmp/storage/.keep
+
+.git
+log/*
+tmp/*
+node_modules
+coverage
+.env

@@ -1,0 +1,39 @@
+openapi: 3.0.1
+info:
+  title: Audit Service API
+  version: v1
+  description: Tracks creation, updates, and errors across services.
+servers:
+  - url: http://localhost:3003
+paths:
+  /auditoria:
+    post:
+      summary: Create a new audit event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                event_type:
+                  type: string
+                entity:
+                  type: string
+                details:
+                  type: string
+      responses:
+        '201':
+          description: Event logged successfully
+  /auditoria/{entity_id}:
+    get:
+      summary: Retrieve audit logs for an entity
+      parameters:
+        - in: path
+          name: entity_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Logs retrieved

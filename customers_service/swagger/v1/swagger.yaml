@@ -1,0 +1,48 @@
+openapi: 3.0.1
+info:
+  title: Customers API
+  version: v1
+  description: API for managing customers in the billing system.
+servers:
+  - url: http://localhost:3001
+paths:
+  /clientes:
+    get:
+      summary: List all customers
+      responses:
+        '200':
+          description: Successful response
+    post:
+      summary: Create a new customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                identification:
+                  type: string
+                email:
+                  type: string
+                address:
+                  type: string
+      responses:
+        '201':
+          description: Customer created successfully
+  /clientes/{id}:
+    get:
+      summary: Retrieve a specific customer by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Customer found
+        '404':
+          description: Customer not found

@@ -15,6 +15,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  url: <%= ENV['DATABASE_URL'] %>
   host: localhost
   username: <%= ENV["PGUSER"] || "andres" %>
   password: <%= ENV["PGPASSWORD"] || "andres" %>

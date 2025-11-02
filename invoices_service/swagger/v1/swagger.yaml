@@ -1,0 +1,60 @@
+openapi: 3.0.1
+info:
+  title: Invoices API
+  version: v1
+  description: Handles creation and retrieval of invoices.
+servers:
+  - url: http://localhost:3002
+paths:
+  /facturas:
+    get:
+      summary: List all invoices
+      parameters:
+        - in: query
+          name: fechaInicio
+          schema:
+            type: string
+          description: Start date filter
+        - in: query
+          name: fechaFin
+          schema:
+            type: string
+          description: End date filter
+      responses:
+        '200':
+          description: Successful response
+    post:
+      summary: Create a new invoice
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customer_id:
+                  type: integer
+                amount:
+                  type: number
+                issued_on:
+                  type: string
+                  format: date
+                notes:
+                  type: string
+      responses:
+        '201':
+          description: Invoice created
+  /facturas/{id}:
+    get:
+      summary: Retrieve a specific invoice by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Invoice found
+        '404':
+          description: Not found
